@@ -1,0 +1,45 @@
+Overview
+The Configuration Editor is a graphical interface designed to interact with the Drifter system. It allows users to configure settings, view status updates, and control the Drifter remotely via network-connected interfaces.
+
+Starting the Application
+To start the Configuration Editor, run the program on a system with Python and the required libraries installed. The interface is structured with tabs for different functionalities such as Registers, Status, and Help.
+
+Main Window
+The main window contains several key components:
+
+Connect Button: Establishes a connection with the Drifter using its IP address.
+Quit Button: Closes the application.
+Status Label: Shows the current connection status (Connected or Disconnected).
+
+Tabs
+Registers Tab
+Tree View: Displays the registers of the Drifter with their current values.
+Load Button: Opens a dialog to load a configuration from a .json file.
+Save Button: Saves the current settings to a .json file.
+Apply Settings Button: Uploads the current configuration to the Drifter.
+Fetch Settings Button: Downloads the current configuration from the Drifter.
+
+Status Tab
+Displays real-time data from the Drifter, such as battery voltage, depth, temperature, etc.
+Control Buttons: Includes buttons for controlling the pump (Pump In, Pump Out, Stop Pump) and taring the volume.
+
+Help Tab
+Contains helpful information and a user guide for using the Configuration Editor. The content is loaded from a local Help.txt file.
+
+Usage
+1. Connecting to a Drifter:
+
+2. Click the Connect button and enter the IP address of the Drifter when prompted. The status will update to show whether the connection was successful.
+Editing Registers:
+
+3. Navigate to the Registers tab.
+4. Double-click on a value to edit it directly in the tree view.  Enter a value and press Enter.
+5Use the Load, Save, Apply Settings, and Fetch Settings buttons to manage configurations.
+
+Monitoring Status:
+Go to the Status tab to see real-time updates from the Drifter.
+Use the control buttons to send commands directly to the Drifter.
+
+Troubleshooting
+Connection Issues: Ensure the Drifter's IP address is correct and that your network settings allow for a connection.
+Configuration Errors: Check the .json files for syntax errors or incorrect values that might prevent settings from being applied correctly.

@@ -1,0 +1,27 @@
+{
+    "status": {
+        "batteryVoltage": 0.0,
+        "depth": 0.0,
+        "temperature": 0.0,
+        "pitch": 0,
+        "roll": 0,
+        "pumpSpeed": 0,
+        "volumeDisplaced": 0,
+        "internalVolume": 0,
+        "totalsamples": 0,
+        "samplesdownloaded": 0
+    },
+    "commands": {
+        "pumpAction": "stop",
+        "tareVolume": false,
+        "applySettings": false,
+        "fetchSettings": false,
+        "downloadData": false
+    },
+    "flags": {
+        "NewMessageGUI": false,
+        "NewMessageDrifter": false,
+        "DrifterIdle": true,
+        "Shutdown": false
+    }
+}

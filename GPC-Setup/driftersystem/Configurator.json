@@ -1,0 +1,27 @@
+{
+    "status": {
+        "batteryVoltage": 40.92,
+        "depth": 0.0,
+        "temperature": 22.0,
+        "pitch": -0.6,
+        "roll": -179.9,
+        "pumpSpeed": 0.0,
+        "volumeDisplaced": 2663.406,
+        "internalVolume": 783.907,
+        "totalsamples": 0,
+        "samplesdownloaded": 0
+    },
+    "commands": {
+        "pumpAction": "stop",
+        "tareVolume": false,
+        "applySettings": false,
+        "fetchSettings": false,
+        "downloadData": false
+    },
+    "flags": {
+        "NewMessageGUI": false,
+        "NewMessageDrifter": false,
+        "DrifterIdle": true,
+        "Shutdown": false
+    }
+}

@@ -1,0 +1,11 @@
+[Unit]
+Description=Start GPC Drifter System Script at Boot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/python3 /home/ssr/Share/driftersystem/GPCstart.py
+
+[Install]
+WantedBy=multi-user.target

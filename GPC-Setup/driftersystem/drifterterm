@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Command 1: Stop the gpc_start.service
+sudo systemctl stop gpc_start.service
+
+#Display Entering terminal
+echo ""
+echo "Entering Drifter Controller Terminal"
+echo "After entering Terminal:"
+echo "  Press 'q'<enter> to view commands"
+echo "  Press <Ctrl - A> followed by 'x' to Exit"
+echo ""
+
+read -p "Press Enter to continue into terminal mode..." input
+
+# Command 2: Launch minicom
+sudo minicom -o -b 57600 -D /dev/ttyS2
+
+# Display message before shutting down
+echo "Exiting terminal and shutting down."
+echo "Please replace MAGNET."
+
+# Command 3: Shutdown the computer
+sudo shutdown now
