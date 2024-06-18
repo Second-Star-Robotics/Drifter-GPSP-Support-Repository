@@ -1,0 +1,745 @@
+; Programming macro for Dropcam
+connect '/F'
+
+:rdo
+timeout = 30
+Wait 'prompt...'	
+if result=0 goto rdo
+If result=1 goto oky
+
+:oky
+pause 2
+send 'p'
+pause 3
+
+
+;put the registers you want to write below 
+;sendln 'w1 6'        ;Driftcam platform ID (must match USBL ID)
+;waitln'Ok'
+;wait '>> '
+sendln 'w2 0'        ;mission start setpoint seconds
+waitln'Ok'
+wait '>> '
+sendln 'w3 1800'        ;mission start timer seconds
+waitln'Ok'
+wait '>> '
+sendln 'w4 0'        ;end mission setpoint
+waitln'Ok'
+wait '>> '
+sendln 'w5 356400'        ;end mission timer
+waitln'Ok'
+wait '>> '
+sendln 'w6 15'        ;Driftcam surface platform ID (should be 15 default)
+waitln'Ok'
+wait '>> '
+sendln 'w7 0'        ;HIL Mode enable (0=normal)
+waitln'Ok'
+wait '>> '
+sendln 'w9 1'        ;Enable Lamps
+waitln'Ok'
+wait '>> '
+sendln 'w10 1800'        ;Ton Lamps
+waitln'Ok'
+wait '>> '
+sendln 'w11 1800'        ;Toff Lamps
+waitln'Ok'
+wait '>> '
+sendln 'w12 1'        ;Enable Camera
+waitln'Ok'
+wait '>> '
+sendln 'w13 1'        ;Enable Camera Record
+waitln'Ok'
+wait '>> '
+sendln 'w14 1800'        ;Ton Camera
+waitln'Ok'
+wait '>> '
+sendln 'w15 1800'        ;Toff Camera
+waitln'Ok'
+wait '>> '
+sendln 'w16 0'        ;Enable Release
+waitln'Ok'
+wait '>> '
+sendln 'w17 0'        ;Ton Release
+waitln'Ok'
+wait '>> '
+sendln 'w18 0'        ;Toff Release
+waitln'Ok'
+wait '>> '
+sendln 'w19 1'        ;Data Backed Up
+waitln'Ok'
+wait '>> '
+
+;DEPTH SETPOINT TIMING REGISTERS
+
+sendln 'w20 0'        ;Depth 1 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w21 75600'        ;Depth 2 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w22 162000'        ;Depth 3 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w23 248400'        ;Depth 4 Start Time 
+waitln'Ok'
+wait '>> '
+sendln 'w24 334800'        ;Depth 5 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w25 -1'        ;Depth 6 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w26 -1'        ;Depth 7 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w27 -1'        ;Depth 8 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w28 -1'        ;Depth 9 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w29 -1'        ;Depth 10 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w30 -1'        ;Depth 11 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w31 -1'        ;Depth 12 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w32 -1'        ;Depth 13 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w33 -1'        ;Depth 14 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w34 -1'        ;Depth 15 Start Time
+waitln'Ok'
+wait '>> '
+
+;SURFACE INTERVAL TIMING REGISTERS
+
+sendln 'w35 75600'        ;Surface Interval 1 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w36 162000'        ;Surface Interval 2 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w37 248400'        ;Surface Interval 3 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w38 334800'        ;Surface Interval 4 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w39 -1'        ;Surface Interval 5 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w40 -1'        ;Surface Interval 6 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w41 -1'        ;Surface Interval 7 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w42 -1'        ;Surface Interval 8 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w43 -1'        ;Surface Interval 9 Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w44 -1'        ;Surface Interval 10 Start Time
+waitln'Ok'
+wait '>> '
+
+;SURFACE INTERVAL DURATION REGISTERS
+
+sendln 'w45 3600'        ;Surface Interval 1 Duration
+waitln'Ok'
+wait '>> '
+sendln 'w46 5400'        ;Surface Interval 2 Duration
+waitln'Ok'
+wait '>> '
+sendln 'w47 3600'        ;Surface Interval 3 Duration
+waitln'Ok'
+wait '>> '
+sendln 'w48 21600'        ;Surface Interval 4 Duration
+waitln'Ok'
+wait '>> '
+sendln 'w49 0'        ;Surface Interval 5 Duration
+waitln'Ok'
+wait '>> '
+sendln 'w50 0'        ;Surface Interval 6 Duration
+waitln'Ok'
+wait '>> '
+sendln 'w51 0'        ;Surface Interval 7 Duration
+waitln'Ok'
+wait '>> '
+sendln 'w52 0'        ;Surface Interval 8 Duration
+waitln'Ok'
+wait '>> '
+sendln 'w53 0'        ;Surface Interval 9 Duration
+waitln'Ok'
+wait '>> '
+sendln 'w54 0'        ;Surface Interval 10 Duration
+waitln'Ok'
+wait '>> '
+
+;DEPTH TRIGGERS
+
+sendln 'w56 0'        ;Depth Mission Start Enable
+waitln'Ok'
+wait '>> '
+sendln 'w57 0'        ;Depth Mission Start Low Threshold
+waitln'Ok'
+wait '>> '
+sendln 'w58 0'        ;Depth Mission Start High Threshold
+waitln'Ok'
+wait '>> '
+sendln 'w59 1'        ;Depth End Mission Enable
+waitln'Ok'
+wait '>> '
+sendln 'w60 550'        ;Depth End Mission Low Threshold
+waitln'Ok'
+wait '>> '
+sendln 'w61 32768'        ;Depth End Mission High Threshold
+waitln'Ok'
+wait '>> '
+sendln 'w71 0'        ;Depth Release Enable
+waitln'Ok'
+wait '>> '
+sendln 'w72 0'        ;Depth Release Low Threshold
+waitln'Ok'
+wait '>> '
+sendln 'w73 0'        ;Depth Release High Threshold
+waitln'Ok'
+wait '>> '
+
+;BATTERY TRIGGERS
+
+sendln 'w92 0'        ;Battery Mission Start Enable
+waitln'Ok'
+wait '>> '
+sendln 'w93 0'        ;Battery Mission Start Low Threshold
+waitln'Ok'
+wait '>> '
+sendln 'w94 0'        ;Battery Mission Start High Threshold
+waitln'Ok'
+wait '>> '
+sendln 'w95 1'        ;Battery End Mission Enable
+waitln'Ok'
+wait '>> '
+sendln 'w96 0'        ;Battery End Mission Low Threshold
+waitln'Ok'
+wait '>> '
+sendln 'w97 3021'        ;Battery End Mission High Threshold
+waitln'Ok'
+wait '>> '
+sendln 'w107 0'        ;Battery Release Enable
+waitln'Ok'
+wait '>> '
+sendln 'w108 0'        ;Battery Release Low Threshold
+waitln'Ok'
+wait '>> '
+sendln 'w109 0'        ;Battery Release High Threshold
+waitln'Ok'
+wait '>> '
+
+;END OF MISSION BURN WIRE SETTINGS
+
+sendln 'w126 600'        ;Hard Release Time
+waitln'Ok'
+wait '>> '
+sendln 'w127 65535'        ;Release Depth
+waitln'Ok'
+wait '>> '
+sendln 'w128 2800'        ;Release Time
+waitln'Ok'
+wait '>> '
+
+;REAL TIME CLOCK SETTINGS
+
+sendln 'w129 0'        ;DST
+waitln'Ok'
+wait '>> '
+sendln 'w130 0'        ;Time Zone
+waitln'Ok'
+wait '>> '
+sendln 'w131 0'        ;Mission End Time of Day
+waitln'Ok'
+wait '>> '
+sendln 'w132 0'        ;Mission Start Time of Day
+waitln'Ok'
+wait '>> '
+
+;CAMERA TIMING WINDOWS
+
+sendln 'w151 0'        ;Camera Record Time End Mission Enable
+waitln'Ok'
+wait '>> '
+sendln 'w152 86200'        ;Camera Total Record Time
+waitln'Ok'
+wait '>> '
+sendln 'w153 0'        ;Camera Video Daily Window A Enabled
+waitln'Ok'
+wait '>> '
+sendln 'w154 0'        ;Camera Video Daily Window A Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w155 0'        ;Camera Video Daily Window A End Time
+waitln'Ok'
+wait '>> '
+sendln 'w156 0'        ;Camera Video Daily Window B Enable
+waitln'Ok'
+wait '>> '
+sendln 'w157 0'        ;Camera Video Daily Window B Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w158 0'        ;Camera Video Daily Window B End Time
+waitln'Ok'
+wait '>> '
+sendln 'w159 0'        ;Lamp Total On Time
+waitln'Ok'
+wait '>> '
+sendln 'w160 0'        ;Lamp Daily Window A Enable
+waitln'Ok'
+wait '>> '
+sendln 'w161 0'        ;Lamp Daily Window A Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w162 0'        ;Lamp Daily Window A End Time
+waitln'Ok'
+wait '>> '
+sendln 'w163 0'        ;Lamp Daily Window B Enable
+waitln'Ok'
+wait '>> '
+sendln 'w164 0'        ;Lamp Daily Window B Start Time
+waitln'Ok'
+wait '>> '
+sendln 'w165 0'        ;Lamp Daily Window B End Time
+waitln'Ok'
+wait '>> '
+
+
+;MISSION SENSOR START DELAY TIMER
+
+sendln 'w169 0'        ;Start Mission Sensor Delay Timer
+waitln'Ok'
+wait '>> '
+
+;LAMP BEACON SETTINGS
+
+sendln 'w170 1'        ;Beacon Pre Mission Enable
+waitln'Ok'
+wait '>> '
+sendln 'w171 0'        ;Beacon Mission Enable
+waitln'Ok'
+wait '>> '
+sendln 'w172 1'        ;Beacon Post Mission Enable
+waitln'Ok'
+wait '>> '
+sendln 'w173 100'        ;Beacon Pulse Time
+waitln'Ok'
+wait '>> '
+sendln 'w174 5'        ;Beacon Time Between Pulses
+waitln'Ok'
+wait '>> '
+
+;CAMERA/LAMP EVENT WINDOW SETTINGS
+
+sendln 'w180 0'        ;Jetson On Time 1
+waitln'Ok'
+wait '>> '
+sendln 'w181 0'        ;Jetson On Time 2
+waitln'Ok'
+wait '>> '
+sendln 'w182 0'        ;Jetson On Time 3
+waitln'Ok'
+wait '>> '
+sendln 'w183 0'        ;Jetson On Time 4
+waitln'Ok'
+wait '>> '
+sendln 'w184 0'        ;Jetson On Time 5
+waitln'Ok'
+wait '>> '
+sendln 'w185 0'        ;Jetson On Time 6
+waitln'Ok'
+wait '>> '
+sendln 'w186 0'        ;Jetson Off Time 1
+waitln'Ok'
+wait '>> '
+sendln 'w187 0'        ;Jetson Off Time 2
+waitln'Ok'
+wait '>> '
+sendln 'w188 0'        ;Jetson Off Time 3
+waitln'Ok'
+wait '>> '
+sendln 'w189 0'        ;Jetson Off Time 4
+waitln'Ok'
+wait '>> '
+sendln 'w190 0'        ;Jetson Off Time 5
+waitln'Ok'
+wait '>> '
+sendln 'w191 0'        ;Jetson Off Time 6
+waitln'Ok'
+wait '>> '
+sendln 'w192 0'        ;Lamps On Time 1
+waitln'Ok'
+wait '>> '
+sendln 'w193 0'        ;Lamps On Time 2
+waitln'Ok'
+wait '>> '
+sendln 'w194 0'        ;Lamps On Time 3
+waitln'Ok'
+wait '>> '
+sendln 'w195 0'        ;Lamps On Time 4
+waitln'Ok'
+wait '>> '
+sendln 'w196 0'        ;Lamps On Time 5
+waitln'Ok'
+wait '>> '
+sendln 'w197 0'        ;Lamps On Time 6
+waitln'Ok'
+wait '>> '
+sendln 'w198 0'        ;Lamps Off Time 1
+waitln'Ok'
+wait '>> '
+sendln 'w199 0'        ;Lamps Off Time 2
+waitln'Ok'
+wait '>> '
+sendln 'w200 0'        ;Lamps Off Time 3
+waitln'Ok'
+wait '>> '
+sendln 'w201 0'        ;Lamps Off Time 4
+waitln'Ok'
+wait '>> '
+sendln 'w202 0'        ;Lamps Off Time 5
+waitln'Ok'
+wait '>> '
+sendln 'w203 0'        ;Lamps Off Time 6
+waitln'Ok'
+wait '>> '
+sendln 'w204 0'        ;Enable Jetson Event Windows
+waitln'Ok'
+wait '>> '
+sendln 'w205 0'        ;Enable Lamp Event Windows
+waitln'Ok'
+wait '>> '
+sendln 'w206 1'        ;Camera and Lamp Synch Enable
+waitln'Ok'
+wait '>> '
+sendln 'w207 60'        ;Lamp Synch on Delay Time
+waitln'Ok'
+wait '>> '
+
+
+;DRIFTER FIX RECORDING
+sendln 'w210 5'        ;Platform 1 Address
+waitln'Ok'
+wait '>> '
+sendln 'w211 0'        ;Platform 2 Address
+waitln'Ok'
+wait '>> '
+sendln 'w212 0'        ;Platform 3 Address
+waitln'Ok'
+wait '>> '
+sendln 'w213 0'        ;Platform 4 Address
+waitln'Ok'
+wait '>> '
+sendln 'w214 0'        ;Platform 5 Address
+waitln'Ok'
+wait '>> '
+sendln 'w215 0'        ;Platform 6 Address
+waitln'Ok'
+wait '>> '
+sendln 'w216 0'        ;Platform 7 Address
+waitln'Ok'
+wait '>> '
+sendln 'w217 0'        ;Platform 8 Address
+waitln'Ok'
+wait '>> '
+sendln 'w218 0'        ;Platform 9 Address
+waitln'Ok'
+wait '>> '
+sendln 'w219 0'        ;Platform 10 Address
+waitln'Ok'
+wait '>> '
+sendln 'w220 0'        ;Platform 11 Address
+waitln'Ok'
+wait '>> '
+sendln 'w221 0'        ;Platform 12 Address
+waitln'Ok'
+wait '>> '
+sendln 'w222 0'        ;Platform 13 Address
+waitln'Ok'
+wait '>> '
+sendln 'w223 0'        ;Platform 14 Address
+waitln'Ok'
+wait '>> '
+sendln 'w224 0'        ;Platform 15 Address
+waitln'Ok'
+wait '>> '
+sendln 'w225 1200'        ;USBL Fix Period
+waitln'Ok'
+wait '>> '
+sendln 'w226 120'        ;USBL Fix Start Delay
+waitln'Ok'
+wait '>> '
+
+
+sendln 'w235 0'        ;Depth Zero
+waitln'Ok'
+wait '>> '
+;sendln 'w236 0'        ;Saved Position (Motor Encoder)
+;waitln'Ok'
+;wait '>> '
+;sendln 'w237 1196956740 ;Max Position
+;waitln'Ok'
+;wait '>> '
+;sendln 'w238 0 ;Zero Adjust
+;waitln'Ok'
+;wait '>> '
+sendln 'w239 4'        ;Variance Length
+waitln'Ok'
+wait '>> '
+sendln 'w242 3600'        ;Autoballast Timer
+waitln'Ok'
+wait '>> '
+
+;DEPTH FLOATING POINT SETPOINTS
+
+sendln 'w256 100.0'        ;Depth 1
+waitln'Ok'
+wait '>> '
+sendln 'w257 300.0'        ;Depth 2
+waitln'Ok'
+wait '>> '
+sendln 'w258 100.0'        ;Depth 3
+waitln'Ok'
+wait '>> '
+sendln 'w259 450.0'        ;Depth 4
+waitln'Ok'
+wait '>> '
+sendln 'w260 -10.0'        ;Depth 5
+waitln'Ok'
+wait '>> '
+sendln 'w261 -10.0'        ;Depth 6
+waitln'Ok'
+wait '>> '
+sendln 'w262 -10.0'        ;Depth 7
+waitln'Ok'
+wait '>> '
+sendln 'w263 -10.0'      ;Depth 8
+waitln'Ok'
+wait '>> '
+sendln 'w264 -10.0'      ;Depth 9
+waitln'Ok'
+wait '>> '
+sendln 'w265 -10.0'      ;Depth 10
+waitln'Ok'
+wait '>> '
+sendln 'w266 -10.0'   ;Depth 11
+waitln'Ok'
+wait '>> '
+sendln 'w267 -10.0'     ;Depth 12
+waitln'Ok'
+wait '>> '
+sendln 'w268 -10.0'     ;Depth 13
+waitln'Ok'
+wait '>> '
+sendln 'w269 -10.0'     ;Depth 14
+waitln'Ok'
+wait '>> '
+sendln 'w270 -10.0'     ;Depth 15
+waitln'Ok'
+wait '>> '
+
+;VELOCITY FLOATING POINT SETPOINTS
+
+sendln 'w271 0.04'        ;Velocity 1
+waitln'Ok'
+wait '>> '
+sendln 'w272 0.04'        ;Velocity 2
+waitln'Ok'
+wait '>> '
+sendln 'w273 0.04'        ;Velocity 3
+waitln'Ok'
+wait '>> '
+sendln 'w274 0.04'        ;Velocity 4
+waitln'Ok'
+wait '>> '
+sendln 'w275 0.04'        ;Velocity 5
+waitln'Ok'
+wait '>> '
+sendln 'w276 0.04'        ;Velocity 6
+waitln'Ok'
+wait '>> '
+sendln 'w277 0.04'        ;Velocity 7
+waitln'Ok'
+wait '>> '
+sendln 'w278 0.04'        ;Velocity 8
+waitln'Ok'
+wait '>> '
+sendln 'w279 0.04'        ;Velocity 9
+waitln'Ok'
+wait '>> '
+sendln 'w280 0.04'        ;Velocity 10
+waitln'Ok'
+wait '>> '
+sendln 'w281 0.04'        ;Velocity 11
+waitln'Ok'
+wait '>> '
+sendln 'w282 0.04'        ;Velocity 12
+waitln'Ok'
+wait '>> '
+sendln 'w283 0.04'        ;Velocity 13
+waitln'Ok'
+wait '>> '
+sendln 'w284 0.04'        ;Velocity 14
+waitln'Ok'
+wait '>> '
+sendln 'w285 0.04'        ;Velocity 15
+waitln'Ok'
+wait '>> '
+
+;DEPTH CONTROLLER PARAMETERS
+
+sendln 'w299 1.0'        ;[s] Controller dt
+waitln'Ok'
+wait '>> '
+sendln 'w300 0.001'        ;Kp_z (1/s)
+waitln'Ok'
+wait '>> '
+sendln 'w301 0.0'        ;Ki_z (1/s)
+waitln'Ok'
+wait '>> '
+sendln 'w302 0.0'        ;Kd_z (1/s)
+waitln'Ok'
+wait '>> '
+sendln 'w303 100.0'        ;i_window_z (m)
+waitln'Ok'
+wait '>> '
+sendln 'w304 0.0'        ;epsilon_z (m)
+waitln'Ok'
+wait '>> '
+sendln 'w305 0.04'        ;max_w (m/s)
+waitln'Ok'
+wait '>> '
+sendln 'w306 -0.04'        ;min_w (m/s)
+waitln'Ok'
+wait '>> '
+sendln 'w307 0.0'        ;min_ctrl_z 
+waitln'Ok'
+wait '>> '
+
+;VELOCITY CONTROLLER PARAMETERS
+
+sendln 'w320 -5.0'        ;Ki_w (mL per m/s)
+waitln'Ok'
+wait '>> '
+sendln 'w321 2800.0'        ;max_Nabla (mL)
+waitln'Ok'
+wait '>> '
+sendln 'w322 0.0'        ;min_Nabla (mL)
+waitln'Ok'
+wait '>> '
+sendln 'w323 -5.0'        ;Zw (1st order drag parameter)
+waitln'Ok'
+wait '>> '
+sendln 'w324 0.0'        ;Zww (Quadratic drag parameter)
+waitln'Ok'
+wait '>> '
+sendln 'w325 1.020'        ;rho (Seawater Density kg/m3)
+waitln'Ok'
+wait '>> '
+sendln 'w326 9.806'        ;ag (gravity accel m/s2)
+waitln'Ok'
+wait '>> '
+sendln 'w327 1.0'        ;min_err_accum_w
+waitln'Ok'
+wait '>> '
+sendln 'w328 1.0'        ;off_adjust_thresh_w
+waitln'Ok'
+wait '>> '
+sendln 'w329 0.0'        ;Zw_i (1st order integral error gain)
+waitln'Ok'
+wait '>> '
+sendln 'w330 0.0'        ;Zww_i (Quadratic integral error gain)
+waitln'Ok'
+wait '>> '
+
+;VOLUME CONTROL PARAMETERS
+
+sendln 'w340 0.25'        ;Kp_Nabla (1/s)
+waitln'Ok'
+wait '>> '
+sendln 'w341 0.0'        ;Ki_Nabla (1/s)
+waitln'Ok'
+wait '>> '
+sendln 'w342 0.0'        ;Kd_Nabla (1/s)
+waitln'Ok'
+wait '>> '
+sendln 'w343 0.0'        ;i_window_Nabla (mL)
+waitln'Ok'
+wait '>> '
+sendln 'w344 0.0'        ;epsilon_Nabla (mL)
+waitln'Ok'
+wait '>> '
+sendln 'w345 0.555'        ;max_Qv_Nabla (mL/s)
+waitln'Ok'
+wait '>> '
+sendln 'w346 -0.555'        ;min_Qv_Nabla (mL/s)
+waitln'Ok'
+wait '>> '
+sendln 'w347 0.0005'        ;min_ctrl_Nabla (mL/s) 
+waitln'Ok'
+wait '>> '
+sendln 'w348 0.0'        ;Nabla_b0 (mL) 
+waitln'Ok'
+wait '>> '
+sendln 'w349 101.32'        ;Nabla_P0 (Pascals) 
+waitln'Ok'
+wait '>> '
+
+;DIVE/SURFACE/HIBERNATE STATE CONTROL PARAMETERS
+
+sendln 'w360 1.0'        ;z_thresh_hibernate (m)
+waitln'Ok'
+wait '>> '
+sendln 'w361 0.001'        ;w_thresh_hibernate (m/s)
+waitln'Ok'
+wait '>> '
+sendln 'w362 75.0'        ;z_thresh_control (m)
+waitln'Ok'
+wait '>> '
+sendln 'w363 4.0'        ;z_thresh_autoballast (m)
+waitln'Ok'
+wait '>> '
+sendln 'w364 2.0'        ;z_thresh_surf (m)
+waitln'Ok'
+wait '>> '
+sendln 'w365 20.0'        ;z_thresh_surf_fault (m)
+waitln'Ok'
+wait '>> '
+sendln 'w366 500.0'        ;Oil Low Thresh (mL)
+waitln'Ok'
+wait '>> '
+sendln 'w367 2800'        ;Oil High Thresh (mL)
+waitln'Ok'
+wait '>> '
+
+;OIL SENSOR CALIBRATION CONSTANTS
+
+;sendln 'w370 -1.2968e-9'        ;2nd Order Oil Cal Constant (mL)
+;waitln'Ok'
+;wait '>> '
+;sendln 'w371 -0.0063474'        ;1st Order Cal Constant (mL)
+;waitln'Ok'
+;wait '>> '
+;sendln 'w372 0.0'        ;Oil Calibration Offset (mL)
+;waitln'Ok'
+;wait '>> '
+
+sendln 'w404 empty'        ;Data Header
+waitln'Ok'
+wait '>> '
+;sendln 'q'
+
