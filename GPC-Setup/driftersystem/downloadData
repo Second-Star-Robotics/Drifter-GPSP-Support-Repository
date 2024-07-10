@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Command 1: Stop the gpc_start.service
+sudo systemctl stop gpc_start.service
+
+
+# Command 2: Launch minicom
+sudo minicom -o -b 57600 -D /dev/ttyS2
+
+# Display message before shutting down
+echo "Exiting terminal and shutting down."
+echo "Please replace MAGNET."
+
+# Command 3: Shutdown the computer
+sudo shutdown now
