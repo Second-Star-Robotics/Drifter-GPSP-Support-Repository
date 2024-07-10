@@ -170,14 +170,16 @@ def download_drifter_subset(serial_conn, filename, start_sample, end_sample):
         
         #Delay 0.1 seconds
         time.sleep(0.1)
+        
 
 def main():
-    ser = serial.Serial('/dev/ttyS2', 57600, timeout=0.3)  # Changed timeout from 0.1 to 0.3 to allow for longer response times
-    first_timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    filename = f"/home/ssr/Share/Data/Depth_Log_{first_timestamp}.csv"
-
     starting_sample = 1
     ending_sample = 1000
+
+    ser = serial.Serial('/dev/ttyS2', 57600, timeout=0.3)  # Changed timeout from 0.1 to 0.3 to allow for longer response times
+    first_timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    #generate a filename with the timestamp, starting sample, and ending sample
+    filename = f"/home/ssr/Share/Data/Depth_Log_{first_timestamp}_{starting_sample}_{ending_sample}.csv"
 
     print("Downloading Samples from sample " + str(starting_sample) + " to sample " + str(ending_sample))
 
