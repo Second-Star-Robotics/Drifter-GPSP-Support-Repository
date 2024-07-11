@@ -11,17 +11,13 @@ echo "  Press 'q'<enter> to view commands"
 echo "  Press <Ctrl - A> followed by 'x' to Exit"
 echo ""
 
-read -p "Press Enter to continue into terminal mode..." input
+read -p "Press Enter to continue into terminal mode and turn off pump" input
 
 # Command 2: Launch minicom
 sudo minicom -o -b 57600 -D /dev/ttyS2
 
 # Wait for user input to shut down
-read -p "Press Enter to shutdown or <Ctrl - C> to return to OS"
+read -p "Press Enter to run download script"
 
-# Display message before shutting down
-echo "Exiting terminal and shutting down."
-echo "Please replace MAGNET."
-
-# Command 3: Shutdown the computer
-sudo shutdown now
+#Run download script
+sudo python3 downloadDepthLog_rev2.py

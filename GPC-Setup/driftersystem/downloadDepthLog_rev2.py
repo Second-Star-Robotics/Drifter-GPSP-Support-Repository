@@ -4,10 +4,7 @@ import time
 from datetime import datetime
 from SerialInterface import enterTerminalMode, readValueTillCommandPrompt, readRegisterInt, readTilPrompt
 
-#GLOBAL VARIABLES
-starting_sample = 1
-ending_sample = 1000
-
+startsample = 0
 
 def get_sample(serial_conn, sample_number):
     sample_off = 406  # Offset for the first sample
@@ -122,7 +119,7 @@ def get_sample(serial_conn, sample_number):
     return sample
 
 #Pass the serial object, filename, and the gpiob object for the shutdown flag (GPIO)
-def download_drifter(serial_conn, filename):
+def download_drifter(serial_conn, filename, startsample):
     # Get total samples from register 166 using readRegisterInt
     n_samples = readRegisterInt(serial_conn, 166)
 
@@ -133,11 +130,12 @@ def download_drifter(serial_conn, filename):
         fieldnames = ["Ticks", "z_setpoint", "z_actual", "z_p", "z_i", "z_d", "w_command", "w_actual", "w_i", "Nabla_command", "Nabla_actual", "Nabla_p", "Nabla_i", "Nabla_d", "Qv_command", "sps_command", "Nabla_air", "Roll", "Pitch", "Yaw", "Scale Derived Oil Volume", "Depth (raw)", "Temperature", "Battery", "VOS", "RangeTime", "RangeDist", "USBLAzimuth", "USBLElevation", "USBLFitError", "PositionEasting", "PositionNorthing", "PositionDepth", "AUX0", "AUX1", "AUX2", "AUX3", "AUX4", "AUX5", "AUX6", "AUX7", "AUX8", "AUX9", "SrcID", "State", "VALVE_INDEX", "EN_PUMP"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
-    
-    for sample_index in range(n_samples):
+
+    for sample_index in range(startsample, n_samples-1):
         sample = get_sample(serial_conn, sample_index)
 
         #Give Status update by printing the sample every 100 samples (eg. sample n of m samples)
+        print(f"Sample "+ str(sample_index))
         if sample_index % 100 == 0:
             print(f"Sample {sample_index} of {n_samples}")
 
@@ -149,47 +147,16 @@ def download_drifter(serial_conn, filename):
         #Close the file
         csvfile.close()
 
-def download_drifter_subset(serial_conn, filename, start_sample, end_sample):
-    print(f"Downloading samples from {start_sample} to {end_sample}")
-
-    # Open a CSV file to write the data
-    with open (filename, 'w', newline='') as csvfile:
-        fieldnames = ["Ticks", "z_setpoint", "z_actual", "z_p", "z_i", "z_d", "w_command", "w_actual", "w_i", "Nabla_command", "Nabla_actual", "Nabla_p", "Nabla_i", "Nabla_d", "Qv_command", "sps_command", "Nabla_air", "Roll", "Pitch", "Yaw", "Scale Derived Oil Volume", "Depth (raw)", "Temperature", "Battery", "VOS", "RangeTime", "RangeDist", "USBLAzimuth", "USBLElevation", "USBLFitError", "PositionEasting", "PositionNorthing", "PositionDepth", "AUX0", "AUX1", "AUX2", "AUX3", "AUX4", "AUX5", "AUX6", "AUX7", "AUX8", "AUX9", "SrcID", "State", "VALVE_INDEX", "EN_PUMP"]
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
-
-    for sample_index in range(start_sample, end_sample + 1):
-        sample = get_sample(serial_conn, sample_index)
-
-        # Give status update by printing the sample every 100 samples (e.g., sample n of m samples)
-        if sample_index % 100 == 0:
-            print(f"Sample {sample_index} of {end_sample}")
-
-        # Append sample to CSV file
-        with open (filename, 'a', newline='') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writerow(sample)
-
-        # Close the file
-        csvfile.close()
-        
-        #Delay 0.1 seconds
-        time.sleep(0.1)
-        
+        #Delay to let controller keep up
+        time.sleep(0.5)
 
 def main():
-    global starting_sample
-    global ending_sample
+    global startsample
 
-    ser = serial.Serial('/dev/ttyS2', 57600, timeout=0.2)  # Changed timeout from 0.1 to 0.2 to allow for longer response times
+    ser = serial.Serial('/dev/ttyS2', 57600, timeout=0.5)  # Replace with the appropriate serial port configuration
     first_timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-
-    #generate a filename with the timestamp, starting sample, and ending sample
-    filename = f"/home/ssr/Share/Data/Depth_Log_{first_timestamp}_{starting_sample}_{ending_sample}.csv"
-
-    download_drifter_subset(ser, filename, starting_sample, ending_sample)
-
-    print("Download Complete")
+    filename = f"/home/ssr/Share/Data/Depth_Log_{first_timestamp}.csv"
+    download_drifter(ser, filename, startsample)
 
 if __name__ == '__main__':
     main()
