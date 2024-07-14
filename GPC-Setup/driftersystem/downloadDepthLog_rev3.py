@@ -116,6 +116,8 @@ def download_drifter(serial_conn, filename, startsample):
                 readTilPrompt(serial_conn)
                 time.sleep(0.5)
                 print("Error getting sample, trying again")
+                #Press Enter to continue wiht input
+                input("Press Enter to continue")
                 continue
 
         #Give Status update by printing the sample every 100 samples (eg. sample n of m samples)
@@ -132,7 +134,7 @@ def download_drifter(serial_conn, filename, startsample):
         csvfile.close()
 
         #Delay to let controller keep up
-        time.sleep(0.1)
+        #time.sleep(0.1)
 
 def main():
     global startsample
