@@ -21,7 +21,7 @@ def get_sample(serial_obj, sample_number):
     sample_off = 406
     
     # Send sample request string
-    command_str = f'r{sample_off + sample_number}'
+    command_str = f'r{sample_off + sample_number}\r'
     serial_obj.write(command_str.encode())
     
     n_measurements = 47
@@ -35,10 +35,6 @@ def get_sample(serial_obj, sample_number):
     while measurement_index < n_measurements:
         measurement_index += 1
         serial_data.append(serial_obj.readline().decode().strip())
-        #Display the current measurement index and line data
-        print(f"Measurement {measurement_index}: {serial_data[-1]}")
-        #wait for user to press enter to continue
-        input("Press Enter to continue...")
     
     # Parse the serial data into the Sample dictionary
     Sample = {
@@ -62,8 +58,8 @@ def get_sample(serial_obj, sample_number):
         'Pitch': float(serial_data[17]),  # 18. Pitch
         'Roll': float(serial_data[18]),  # 19. Roll
         'Yaw': float(serial_data[19]),  # 20. Yaw
-        'Nabla_Scale': float(serial_data[20]),  # 21. Scale Derived Oil Volume
-        'Depth': float(serial_data[21]),  # 22. Depth (raw)
+        'Scale Derived Oil Volume': float(serial_data[20]),  # 21. Scale Derived Oil Volume
+        'Depth (raw)': float(serial_data[21]),  # 22. Depth (raw)
         'Temperature': float(serial_data[22]),  # 23. Temperature
         'Battery': float(serial_data[23]),  # 24. Battery
         'VOS': float(serial_data[24]),  # 25. VOS
@@ -86,14 +82,10 @@ def get_sample(serial_obj, sample_number):
         'AUX8': float(serial_data[41]),  # 42. AUX8
         'AUX9': float(serial_data[42]),  # 43. AUX9
         'SrcID': float(serial_data[43]),  # 44. SrcID
-        'Control_State': float(serial_data[44]),  # 45. Control State
+        'State': float(serial_data[44]),  # 45. Control State
         'VALVE_INDEX': float(serial_data[45]),  # 46. VALVE_INDEX
         'EN_PUMP': float(serial_data[46]),  # 47. EN_PUMP
     }
-
-    #display the dictionary and press enter to continue
-    print(Sample)
-    input("Press Enter to continue...")
     
     return Sample
 
@@ -128,7 +120,7 @@ def download_drifter(serial_conn, filename, startsample):
         csvfile.close()
 
         #Delay to let controller keep up
-        time.sleep(0.5)
+        time.sleep(0.2)
 
 def main():
     global startsample
