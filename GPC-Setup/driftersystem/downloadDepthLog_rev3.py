@@ -104,7 +104,19 @@ def download_drifter(serial_conn, filename, startsample):
         writer.writeheader()
 
     for sample_index in range(startsample, n_samples-1):
-        sample = get_sample(serial_conn, sample_index)
+
+        #Try to get a sample, if error occurs send a CR clear the serial buffer and try again 5 times
+        for i in range(5):
+            try:
+                sample = get_sample(serial_conn, sample_index)
+                break
+            except:
+                serial_conn.write(b'\r')
+                #Clear the serial buffer
+                readTilPrompt(serial_conn)
+                time.sleep(0.5)
+                print("Error getting sample, trying again")
+                continue
 
         #Give Status update by printing the sample every 100 samples (eg. sample n of m samples)
         print(f"Sample "+ str(sample_index))
@@ -120,7 +132,7 @@ def download_drifter(serial_conn, filename, startsample):
         csvfile.close()
 
         #Delay to let controller keep up
-        time.sleep(0.2)
+        time.sleep(0.1)
 
 def main():
     global startsample
