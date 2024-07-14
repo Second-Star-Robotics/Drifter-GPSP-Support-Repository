@@ -132,7 +132,7 @@ def get_sample(serial_obj, sample_number):
     dict: Data Structure containing Driftcam control data.
     """
     
-    sample_off = 405
+    sample_off = 406
     
     # Send sample request string
     command_str = f'r{sample_off + sample_number}'
@@ -149,8 +149,10 @@ def get_sample(serial_obj, sample_number):
     while measurement_index < n_measurements:
         measurement_index += 1
         serial_data.append(serial_obj.readline().decode().strip())
-        #Display current line
-        print(serial_data[-1])
+        #Display the current measurement index and line data
+        print(f"Measurement {measurement_index}: {serial_data[-1]}")
+        #wait for user to press enter to continue
+        input("Press Enter to continue...")
     
     # Parse the serial data into the Sample dictionary
     Sample = {
@@ -202,6 +204,10 @@ def get_sample(serial_obj, sample_number):
         'VALVE_INDEX': float(serial_data[45]),  # 46. VALVE_INDEX
         'EN_PUMP': float(serial_data[46]),  # 47. EN_PUMP
     }
+
+    #display the dictionary and press enter to continue
+    print(Sample)
+    input("Press Enter to continue...")
     
     return Sample
 
