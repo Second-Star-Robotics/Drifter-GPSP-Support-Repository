@@ -20,4 +20,4 @@ sudo minicom -o -b 57600 -D /dev/ttyS2
 read -p "Press Enter to run download script"
 
 #Run download script
-sudo python3 downloadDepthLog_rev2.py
+sudo python3 downloadDepthLog.py
