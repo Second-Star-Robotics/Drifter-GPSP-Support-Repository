@@ -20,4 +20,14 @@ sudo minicom -o -b 57600 -D /dev/ttyS2
 read -p "Press Enter to run download script"
 
 #Run download script
-sudo python3 downloadDepthLog.py
+sudo python3 /home/ssr/Share/driftersystem/downloadDepthLog.py
+
+# Wait for user input to shut down
+read -p "Press Enter to shutdown or <Ctrl - C> to return to OS"
+
+# Display message before shutting down
+echo "Exiting terminal and shutting down."
+echo "Please replace MAGNET."
+
+# Command 3: Shutdown the computer
+sudo shutdown now
